@@ -1,0 +1,242 @@
+body {
+	margin-top: 60px;
+	/* background:#CCC; */
+	/*background:#111;*/
+	padding-bottom:60px;
+}
+
+.container{
+	margin-top:1em;
+}
+
+#main-center-icon {
+	position: fixed;
+    text-align: center;
+	
+	z-index:1040;
+
+	top:0.6rem;
+	left:48%;
+	width:5.8rem;
+	border-radius:6rem;
+
+	
+	padding-top:1.8rem;
+	padding-bottom:1.8rem;
+	
+	color: rgba(0,0,0,0.3);
+	background: #45A6E6;
+	
+	box-shadow: 0rem 0rem 1rem #111;
+}
+
+#main-center-icon:hover  {
+	color: rgba(0,0,0,0.8);
+	background: #3E95CF;
+}
+
+/* -----------------------------------
+   ------------- Navbars -------------
+   ----------------------------------- */
+a.navbar-brand span {
+	color:white;
+}
+
+.navbar-left.hidden-md .input-group {
+	width:100%;
+}
+   
+.navbar-fixed-top {
+	background:#45A6E6;
+	border-bottom: 0.2rem solid rgba(0,0,0,0.1);
+	padding-right: 1.5rem;
+}
+
+.navbar-fixed-top #navbar-search-small {
+	width:92%;
+	margin-left:4%;
+}
+
+#navbar-collapse-top li a.hidden-sm  {
+	width:92%;
+	margin-left:4%;
+	border-radius:0.4rem;
+	margin-top:0.1rem;
+	text-align: center;
+}
+
+.navbar-fixed-top ul.navbar-nav li a {
+	color:white;
+}
+
+#create-auction-large {
+	color:white;
+	background:#53C153;
+	position: fixed;
+    text-align: center;
+	z-index:1040;
+	box-shadow: 0rem 0rem 1.5rem #222;
+	
+	/* border-radius: 0.4rem; */
+	
+	top:-2rem;
+	right:20rem;
+	height:8rem;
+	padding-top:3.5rem;
+	padding-bottom:1.5rem;
+	padding-right:1.5rem;
+	padding-left:1.5rem;
+}
+
+#create-auction-large:hover  {
+	/* color:#53C153; */
+	color:black;
+	background:#4BAE4B;
+}
+
+#create-auction-small  {
+	color:white;
+	background:#53C153;
+	box-shadow: 0rem 0rem 0.5rem #111;
+}
+
+#create-auction-small:hover  {
+	/* color:#53C153; */
+	color:black;
+	background:#4BAE4B;
+}
+
+.navbar-fixed-top ul.navbar-nav li a:hover {
+	/* color:white; */
+	background:rgba(100,100,100,0.1);
+}
+
+.navbar-right .top-navbar-small .btn {
+	width:90%;
+}
+
+.navbar-fixed-bottom  {
+	background: rgba(0,0,0,0.2);
+	min-height:2rem;
+	border-top: 0.2rem solid rgba(0,0,0,0);
+}
+
+.navbar-fixed-bottom .navbar-right {
+	padding-left: 1.6rem;
+	padding-right: 1.5rem;
+}
+
+.navbar-fixed-bottom  li a {
+	color:black;
+	padding-top:0.5rem;
+	padding-bottom:0.5rem;
+}
+
+#signin-sidebar .nav {
+	border: 0.2rem solid #246BB2;
+	border-radius:0.4rem;
+	text-align:center;
+}
+
+#signin-sidebar button {
+	width:90%;
+	margin-left:5%;	
+}
+
+#search-btn {
+	color:#246BB2;
+}
+
+/* -----------------------------------
+   ------------- BODY -------------
+   ----------------------------------- */
+.sidebar-menu { 
+	border: 3px solid;
+	border-color:white;
+	border-radius:3px;
+	background:white;
+	box-shadow: 0rem 0rem 1rem #888888;
+   	border: 0.2rem solid transparent;
+	border-radius:0.4rem;
+}
+
+#user-info .row{
+	margin:2em;
+	margin-left:0;
+}
+
+body > div.container.footer > nav{
+	background-color:rgb(190,190,190);
+}
+
+.breadcrumb{
+	box-shadow: 0rem 0rem 1rem #888888;
+   	border: 0.2rem solid transparent;
+	border-radius:0.4rem;
+}
+
+hr {
+	color:#DDD;
+    border: 0.1em solid;
+	border-color: #666;
+    border-radius: 1em 1em 1em 1em;
+	margin-left: -5px;
+	margin-right: -5px;
+}
+
+.public-divider{
+	margin-top:0.8em;
+	margin-bottom:0.8em;
+}
+
+.input-group-addon {
+    min-width:100px;// if you want width please write here //
+    text-align:left;
+}
+
+.col-centered{
+	float: none;
+	margin: 0 auto;
+}
+
+.thumbnail{
+	margin-bottom:10px;
+	margin-top:10px;
+}
+
+.user-info{
+	padding-left:0px;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a:focus {
+	text-decoration: none;
+    outline:0; /*removes the dotted border*/
+}
+
+.btn:hover {
+	text-decoration: none;
+    outline:0; /*removes the dotted border*/
+}
+
+.btn:focus {
+	text-decoration: none;
+    outline:0; /*removes the dotted border*/
+}
+
+.btn:active {
+	text-decoration: none;
+    outline:0; /*removes the dotted border*/
+}
+
+.panel-footer {
+	background:#DDD;
+}
+
+.navbar-fixed-bottom {
+	background:white;
+	margin-top:20px;
+}

@@ -1,0 +1,161 @@
+CREATE FUNCTION check_bids() RETURNS TRIGGER AS $cancel_blocked_users_bids$
+BEGIN
+	IF NEW.status_id = 2 THEN
+		UPDATE Bid SET valid = false WHERE registered = NEW.user_id;
+                UPDATE Auction SET status = 3 WHERE owner_id = NEW.user_id;
+	END IF;
+	RETURN NEW;
+END;
+$cancel_blocked_users_bids$ LANGUAGE plpgsql;
+
+CREATE TRIGGER cancel_blocked_users_bids
+       AFTER UPDATE OF status_id ON Registered
+       FOR EACH ROW
+       EXECUTE PROCEDURE check_bids();
+
+CREATE FUNCTION remove_comment() RETURNS TRIGGER AS $set_comment_invisible$
+BEGIN
+	UPDATE Comment SET visible = false WHERE id = NEW.comment_id;
+	RETURN NEW;
+END;
+$set_comment_invisible$ LANGUAGE plpgsql;
+
+CREATE TRIGGER set_comment_invisible
+       AFTER INSERT ON RemoveComment
+       FOR EACH ROW
+       EXECUTE PROCEDURE remove_comment();
+
+CREATE FUNCTION check_admin_user_id() RETURNS TRIGGER AS $add_new_admin$
+	BEGIN
+		IF (SELECT COUNT(*) FROM Registered WHERE NEW.user_id = user_id) > 0 THEN
+			RAISE EXCEPTION 'An user with the choosen user_id already exists.';
+		END IF;
+		RETURN NEW;
+	END;
+$add_new_admin$ LANGUAGE plpgsql;
+
+CREATE TRIGGER add_new_admin
+	BEFORE INSERT ON Administrator
+	FOR EACH ROW
+	EXECUTE PROCEDURE check_admin_user_id();
+
+CREATE FUNCTION check_user_user_id() RETURNS TRIGGER AS $add_new_user$
+	BEGIN
+		IF (SELECT COUNT(*) FROM Administrator WHERE NEW.user_id = user_id) > 0 THEN
+			RAISE EXCEPTION 'An user with the choosen user_id already exists.';
+		END IF;
+		RETURN NEW;
+	END;
+$add_new_user$ LANGUAGE plpgsql;
+
+CREATE TRIGGER add_new_user
+	BEFORE INSERT ON Registered
+	FOR EACH ROW
+	EXECUTE PROCEDURE check_user_user_id();
+
+CREATE FUNCTION check_block_user_id() RETURNS TRIGGER AS $block_user$
+	BEGIN
+		IF (SELECT COUNT(*) FROM BlockAuction WHERE NEW.admin_action_id = admin_action_id) > 0 THEN
+			RAISE EXCEPTION 'An admin action with the choosen admin_action_id already exists.';
+                END IF;
+		IF (SELECT COUNT(*) FROM RemoveComment WHERE NEW.admin_action_id = admin_action_id) > 0 THEN
+			RAISE EXCEPTION 'An admin action with the choosen admin_action_id already exists.';
+		END IF;
+		RETURN NEW;
+	END;
+$block_user$ LANGUAGE plpgsql;
+
+CREATE TRIGGER block_user
+	BEFORE INSERT ON BlockUser
+	FOR EACH ROW
+	EXECUTE PROCEDURE check_block_user_id();
+
+CREATE FUNCTION check_remove_comment_id() RETURNS TRIGGER AS $remove_comment$
+	BEGIN
+		IF (SELECT COUNT(*) FROM BlockAuction WHERE NEW.admin_action_id = admin_action_id) > 0 THEN
+			RAISE EXCEPTION 'An admin action with the choosen admin_action_id already exists.';
+		IF (SELECT COUNT(*) FROM BlockUser WHERE NEW.admin_action_id = admin_action_id) > 0 THEN
+			RAISE EXCEPTION 'An admin action with the choosen admin_action_id already exists.';
+		END IF;
+		RETURN NEW;
+	END;
+$remove_comment$ LANGUAGE plpgsql;
+
+CREATE TRIGGER remove_comment
+	BEFORE INSERT ON RemoveComment
+	FOR EACH ROW
+	EXECUTE PROCEDURE check_remove_comment_id();
+
+CREATE FUNCTION check_block_auction_id() RETURNS TRIGGER AS $block_auction$
+	BEGIN
+		IF (SELECT COUNT(*) FROM BlockUser WHERE NEW.admin_action_id = admin_action_id) > 0 THEN
+			RAISE EXCEPTION 'An admin action with the choosen admin_action_id already exists.';
+		IF (SELECT COUNT(*) FROM RemoveComment WHERE NEW.admin_action_id = admin_action_id) > 0 THEN
+			RAISE EXCEPTION 'An admin action with the choosen admin_action_id already exists.';
+		END IF;
+		RETURN NEW;
+	END;
+$block_auction$ LANGUAGE plpgsql;
+
+CREATE TRIGGER block_auction
+	BEFORE INSERT ON BlockAuction
+	FOR EACH ROW
+	EXECUTE PROCEDURE check_block_auction_id();
+
+CREATE FUNCTION check_bid() RETURNS TRIGGER AS $make_a_bid$
+	BEGIN
+		IF NEW.bid_value <= (SELECT highest_bid FROM Auction WHERE id = NEW.auction_id) THEN
+			RAISE EXCEPTION 'Make a higher bid';
+		END IF;
+		RETURN NEW;
+	END;
+$make_a_bid$ LANGUAGE plpgsql;
+
+CREATE TRIGGER make_a_bid
+	BEFORE INSERT ON BID
+	FOR EACH ROW
+	EXECUTE PROCEDURE check_bid();
+
+CREATE FUNCTION check_report_auction_id() RETURNS TRIGGER AS $report_auction$
+	BEGIN
+		IF (SELECT COUNT(*) FROM ReportedUser WHERE NEW.report_id = report_id) > 0 THEN
+			RAISE EXCEPTION 'A report with the choosen report_id already exists.';
+		END IF;
+		RETURN NEW;
+	END;
+$report_auction$ LANGUAGE plpgsql;
+
+CREATE TRIGGER report_auction
+	BEFORE INSERT ON ReportedAuction
+	FOR EACH ROW
+	EXECUTE PROCEDURE check_report_auction_id();
+
+CREATE FUNCTION check_report_user_id() RETURNS TRIGGER AS $report_user$
+	BEGIN
+		IF (SELECT COUNT(*) FROM ReportedAuction WHERE NEW.report_id = report_id) > 0 THEN
+			RAISE EXCEPTION 'A report with the choosen report_id already exists.';
+		END IF;
+		RETURN NEW;
+	END;
+$report_user$ LANGUAGE plpgsql;
+
+CREATE TRIGGER report_user
+	BEFORE INSERT ON ReportedUser
+	FOR EACH ROW
+	EXECUTE PROCEDURE check_report_user_id();
+
+CREATE FUNCTION check_auction_image() RETURNS TRIGGER AS $add_image_to_auction$
+	BEGIN
+		IF NEW.is_main THEN
+			IF (SELECT COUNT(*) FROM AuctionImage WHERE is_main AND auction_id = NEW.auction_id) > 0 THEN
+				RAISE EXCEPTION 'A main image already exists.';
+			END IF;
+		END IF;
+		RETURN NEW;
+	END;
+$add_image_to_auction$ LANGUAGE plpgsql;
+
+CREATE TRIGGER add_image_to_auction
+	BEFORE INSERT ON AuctionImage
+	FOR EACH ROW
+	EXECUTE PROCEDURE check_auction_image();

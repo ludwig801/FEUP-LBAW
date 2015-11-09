@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>EyeBid - Admin History</title>
+		
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		<!-- Personal css -->
+		<link rel="stylesheet" href="content/css/style.css">
+	</head>
+	
+	<body>
+		<a href="#" class="hidden-xs" id="main-center-icon">
+			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+			<!-- <h2><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>bid</h2> -->
+		</a>
+		<!-- ==================================================== -->
+		<!-- ||                                                || -->
+		<!-- ||                    NAVBAR                      || -->
+		<!-- ||                                                || -->
+		<!-- ==================================================== -->	
+		<div class="container-fluid header">
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-top">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand hidden-sm hidden-md hidden-lg" href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="navbar-collapse-top">	
+					<ul class="nav navbar-nav">
+						<li class="hidden-xs">
+							<form class="navbar-form navbar-left" id="navbar-search-large" role="search">
+								<div class="input-group">
+									<input type="text" id="navbar-search" class="form-control" alt="Search field" title="Search field" placeholder="Search for...">
+									<span class="input-group-btn">
+									<a type="submit" class="btn btn-default" id="search-btn"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+								</div>
+							</form>
+						</li>
+						<li class="hidden-sm hidden-md hidden-lg"><form class="navbar-form navbar-left" id="navbar-search-small" role="search">
+							<input type="text" id="navbar-search" class="form-control" alt="Search field" title="Search field" placeholder="Search for...">
+						</form></li>
+						<li><a href="" class="hidden-xs">
+							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Advanced Search</a>
+						</li>
+						<li><a href="" class="hidden-sm hidden-md hidden-lg">
+							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Advanced Search</a>
+						</li>
+						<hr class="divider hidden-sm hidden-md hidden-lg"></hr>
+						<li><a href="#" class="hidden-sm hidden-md hidden-lg" data-toggle="modal" data-target="#signinModal">
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
+						</li>
+						<li><a href="#" class="hidden-sm hidden-md hidden-lg" data-toggle="modal" data-target="#signupModal">
+							<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a>
+						</li>
+						<hr class="divider hidden-sm hidden-md hidden-lg"></hr>
+						<li><a href="#" class="hidden-sm hidden-md hidden-lg">
+							<span class="glyphicon glyphicon-book" aria-hidden="true"></span> Help</a>
+						</li>
+					</ul>
+					
+					<ul class="nav navbar-nav navbar-right hidden-xs">
+						<li><a href="#" data-toggle="modal" data-target="#signinModal"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a></li>
+						<li><a href="#" data-toggle="modal" data-target="#signupModal"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<!-- ==================================================== -->
+		<!-- ==================================================== -->
+		
+		<div class="container">
+		
+			<div class="row">
+				<div class="col-lg-12">
+					<ol class="breadcrumb">
+						<li>
+							<a href="index.html"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Dashboard</a>
+						</li>
+						<li class="active"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Administration History</li>
+					</ol>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-2">
+					<div class="sidebar-menu">
+						<ul class="nav nav-sidebar ">
+							<li>
+								<a href="index.html"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Active Blocks </a>
+							</li>
+							<li>
+								<a href="index_my_history.html"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> My History </a>
+							</li>
+							<li>
+								<a href="index_admin_history.html"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Administration History</a>
+							</li>
+							<li>
+								<a href="index_blocked_users.html"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Blocked Users</a>
+							</li>
+							<li>
+								<a href="index_blocked_auctions.html"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Blocked Auctions</a>
+							</li>
+							<li>
+								<a href="index_administrators.html"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Administrators</a>
+							</li>
+							<li>
+								<a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Inbox <span class="badge">5</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-10">
+					<div class="panel panel-default sidebar-menu">
+						<div class="panel-body">
+							<div class="row">
+							<div class="col-lg-12">
+								<h1 class="page-header">Administration History</h1>
+							</div>
+							</div>
+							<div class="row">
+								<div style="margin-left:20px; margin-right:20px;" class="panel panel-default">
+								  <!-- Default panel contents -->
+								  <div class="panel-heading">History of administrative actions.</div>
+								  <!-- Table -->
+								  <table class="table table-bordered">
+									<tr>
+										<th>Id</th>
+										<th>Action</th>
+										<th>Date</th>
+										<th>End Date</th>
+									  </tr>
+									  <tr>
+										<td>001</td>
+										<td>Blocked User ee09063</td> 
+										<td>10-01-2015 15:38</td>
+										<td>25-01-2015 15:38</td>
+									  </tr>
+									  <tr>
+										<td>003</td>
+										<td>Blocked Auction #048</td> 
+										<td>10-01-2015 15:38</td>
+										<td>25-01-2015 15:38</td>
+									  </tr>
+								  </table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> <!-- Container -->
+	
+		<div class="container footer">
+			<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">			
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Contacts</a></li>
+					<li><a href="#">FAQ</a></li>
+				</ul>
+			</nav>
+		</div>
+		
+		
+		<!-- Include JQuery library from Google's API -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	</body>
+</html>
